@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Meet Mendapara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        #header {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background for header */
+            color: #fff;
+            padding: 10px 15px; /* Reduced padding */
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Reduced shadow */
+            box-sizing: border-box;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 1.5rem; /* Reduced font size */
+        }
+
+        #header nav {
+            display: flex;
+            gap: 0.8rem; /* Reduced gap */
+        }
+
+        #header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 12px; /* Reduced padding */
+            border-radius: 4px; /* Slightly smaller border radius */
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 0.85rem; /* Reduced font size */
+        }
+
+        #header nav a:hover,
+        #header nav a.active {
+            color: #fff;
+            background-color: #ff6f61; /* Highlight background color on hover and active state */
+        }
+
+        /* Contact Container Styles */
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px; /* Reduced padding */
+            box-sizing: border-box;
+            margin-top: 60px; /* Adjusted for smaller header */
+            height: calc(100vh - 60px); /* Adjusted height */
+        }
+
+        #contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Reduced gap */
+            width: 100%;
+            max-width: 600px; /* Max width for better readability */
+        }
+
+        .contact-item {
+            background: rgba(0, 0, 0, 0.6); /* Slightly darker background */
+            border-radius: 8px; /* Reduced border radius */
+            padding: 15px; /* Reduced padding */
+            width: 100%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Reduced shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px); /* Slight hover effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Reduced shadow on hover */
+        }
+
+        .contact-item h2 {
+            font-size: 1.2rem; /* Reduced font size */
+            margin: 0 0 8px; /* Reduced margin */
+            color: #ff6f61; /* Accent color */
+        }
+
+        .contact-item p {
+            font-size: 0.9rem; /* Reduced font size */
+            line-height: 1.5; /* Reduced line height */
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+        }
+
+        .contact-item a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px; /* Reduced padding */
+            color: #fff;
+            background-color: #ff6f61; /* Button color */
+            text-decoration: none;
+            border-radius: 4px; /* Reduced border radius */
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-item a:hover {
+            background-color: #e05d56; /* Darker shade on hover */
+            transform: translateY(-1px); /* Slight hover effect */
+        }
+
+        /* Footer Styles */
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.8rem; /* Reduced font size */
+            color: #fff;
+            text-shadow: 0 0 6px rgba(255, 105, 180, 1); /* Slightly smaller glow effect */
+            padding: 8px; /* Reduced padding */
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8); /* Background for footer */
+            box-sizing: border-box;
+        }
+
+        #footer p {
+            margin: 0;
+        }
+
+        .footer-link {
+            color: #ff6f61; /* GitHub link color */
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 6px rgba(255, 105, 180, 1); /* Slightly smaller glow effect for link */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #d5a6f4; /* Change color on hover */
+            text-shadow: 0 0 12px rgba(255, 105, 180, 1); /* Enhanced glow on hover */
+        }
+
+        /* Background Animation */
+        #background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f61, #d5a6f4); /* Gradient background */
+            background-size: 200% 200%;
+            animation: backgroundAnimation 10s ease infinite;
+            z-index: -1;
+            filter: blur(4px); /* Slightly reduced blur */
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #header nav {
+                flex-direction: column;
+                gap: 8px; /* Adjusted gap */
+            }
+
+            #header nav a {
+                padding: 8px;
+                font-size: 0.9rem; /* Adjusted font size */
+            }
+
+            .contact-item {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div id="background-animation"></div>
+
+    <!-- Header -->
+    <div id="header">
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </div>
+
+    <!-- Contact Container -->
+    <div id="container">
+        <div id="contact-info">
+            <!-- Personal Mail -->
+            <div class="contact-item">
+                <h2>Personal Mail</h2>
+                <p>Email: <a href="mailto:me@example.com">me@example.com</a></p>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="contact-item">
+                <h2>Contact Details</h2>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123 Portfolio Lane, Web City, WP</p>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="contact-item">
+                <h2>LinkedIn</h2>
+                <a href="https://linkedin.com/in/your-profile" target="_blank">Visit LinkedIn</a>
+            </div>
+
+            <!-- GitHub -->
+            <div class="contact-item">
+                <h2>GitHub</h2>
+                <a href="https://github.com/your-github" target="_blank">Visit GitHub</a>
+            </div>
+
+            <!-- Weather App -->
+            <div class="contact-item">
+                <h2>Weather App</h2>
+                <a href="https://your-weather-app.com" target="_blank">Visit Weather App</a>
+            </div>
+
+            <!-- Portfolio Website -->
+            <div class="contact-item">
+                <h2>Portfolio Website</h2>
+                <a href="https://your-portfolio.com" target="_blank">Visit Portfolio</a>
+            </div>
+
+            <!-- Stack Overflow -->
+            <div class="contact-item">
+                <h2>Stack Overflow</h2>
+                <a href="https://stackoverflow.com/users/your-profile" target="_blank">Visit Stack Overflow</a>
+            </div>
+
+            <!-- Pinterest -->
+            <div class="contact-item">
+                <h2>Pinterest</h2>
+                <a href="https://pinterest.com/your-profile" target="_blank">Visit Pinterest</a>
+            </div>
+
+            <!-- X (Twitter) -->
+            <div class="contact-item">
+                <h2>X (Twitter)</h2>
+                <a href="https://twitter.com/your-profile" target="_blank">Visit Twitter</a>
+            </div>
+
+            <!-- Facebook -->
+            <div class="contact-item">
+                <h2>Facebook</h2>
+                <a href="https://facebook.com/your-profile" target="_blank">Visit Facebook</a>
+            </div>
+
+            <!-- Linktree -->
+            <div class="contact-item">
+                <h2>Linktree</h2>
+                <a href="https://linktr.ee/meet_mendapara" target="_blank">Join meet_mendapara on Linktree</a>
+            </div>
+
+            <!-- Cookie Preferences -->
+            <div class="contact-item">
+                <h2>Cookie Preferences</h2>
+                <p>Manage your cookie preferences <a href="https://your-site.com/cookies" target="_blank">here</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Created by [Your Name] with <span style="color: #ff6f61;">❤️</span> | <a href="https://github.com/[your-github]" class="footer-link" target="_blank">GitHub</a></p>
+    </div>
+</body>
+</html>

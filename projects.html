@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Meet Mendapara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        #header {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background for header */
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        #header nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        #header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 1rem;
+        }
+
+        #header nav a:hover,
+        #header nav a.active {
+            color: #fff;
+            background-color: #ff6f61; /* Highlight background color on hover and active state */
+        }
+
+        /* Projects Container Styles */
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 120px); /* Adjust height considering header and footer */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #project-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.7); /* Slightly transparent background for cards */
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(33.333% - 20px); /* Responsive width for three columns */
+            max-width: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin: 0 0 10px;
+            color: #ff6f61; /* Accent color */
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+        }
+
+        .card a {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #ff6f61; /* Button color */
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .card a:hover {
+            background-color: #e05d56; /* Darker shade on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styles */
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 1rem;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 1); /* Glow effect */
+            padding: 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8); /* Background for footer */
+            box-sizing: border-box;
+        }
+
+        #footer p {
+            margin: 0;
+        }
+
+        .footer-link {
+            color: #ff6f61; /* GitHub link color */
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 1); /* Glow effect for link */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #d5a6f4; /* Change color on hover */
+            text-shadow: 0 0 16px rgba(255, 105, 180, 1); /* Enhanced glow on hover */
+        }
+
+        /* Background Animation */
+        #background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f61, #d5a6f4); /* Gradient background */
+            background-size: 200% 200%;
+            animation: backgroundAnimation 10s ease infinite;
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header">
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </div>
+
+    <!-- Projects Container -->
+    <div id="container">
+        <div id="project-cards">
+            <!-- Project Card 1 -->
+            <div class="card">
+                <h2>Weather Forecast Web Application</h2>
+                <p><strong>Description:</strong> Built a web application using React, Redux, Chakra UI, and CSS for real-time weather forecasts. Integrated data from the OpenWeatherMap API and implemented features like city-based weather search.</p>
+                <p><strong>Tech Stack:</strong> React, Redux, Chakra UI, CSS, OpenWeatherMap API</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="card">
+                <h2>Chit-Chat Social Media Platform</h2>
+                <p><strong>Description:</strong> Developed a dynamic social media platform using React, TypeScript, and Vite. Utilized Vite for rapid development with Hot Module Replacement and TypeScript for type safety.</p>
+                <p><strong>Tech Stack:</strong> React, TypeScript, Vite</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Created by [Your Name] with <span style="color: #ff6f61;">❤️</span> | <a href="https://github.com/[your-github]" class="footer-link" target="_blank">GitHub</a></p>
+    </div>
+
+    <!-- Background Animation -->
+    <div id="background-animation"></div>
+</body>
+</html>

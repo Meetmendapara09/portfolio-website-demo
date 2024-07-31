@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Meet Mendapara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        #header {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background for header */
+            color: #fff;
+            padding: 10px 15px; /* Reduced padding */
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Reduced shadow */
+            box-sizing: border-box;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 1.5rem; /* Reduced font size */
+        }
+
+        #header nav {
+            display: flex;
+            gap: 0.8rem; /* Reduced gap */
+        }
+
+        #header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 12px; /* Reduced padding */
+            border-radius: 4px; /* Slightly smaller border radius */
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 0.85rem; /* Reduced font size */
+        }
+
+        #header nav a:hover,
+        #header nav a.active {
+            color: #fff;
+            background-color: #ff6f61; /* Highlight background color on hover and active state */
+        }
+
+        /* Services Container Styles */
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px; /* Reduced padding */
+            box-sizing: border-box;
+            margin-top: 60px; /* Adjusted for smaller header */
+            height: calc(100vh - 60px); /* Adjusted height */
+        }
+
+        #service-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* Reduced gap */
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.6); /* Slightly darker background */
+            border-radius: 8px; /* Reduced border radius */
+            padding: 15px; /* Reduced padding */
+            width: calc(100% - 30px); /* Adjusted width */
+            max-width: 300px; /* Reduced max-width */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Reduced shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Slight hover effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Reduced shadow on hover */
+        }
+
+        .card h2 {
+            font-size: 1.2rem; /* Reduced font size */
+            margin: 0 0 8px; /* Reduced margin */
+            color: #ff6f61; /* Accent color */
+        }
+
+        .card p {
+            font-size: 0.9rem; /* Reduced font size */
+            line-height: 1.5; /* Reduced line height */
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+        }
+
+        .card a {
+            display: block;
+            width: fit-content;
+            margin: 15px auto 0; /* Reduced margin */
+            padding: 8px 16px; /* Reduced padding */
+            color: #fff;
+            background-color: #ff6f61; /* Button color */
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px; /* Reduced border radius */
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .card a:hover {
+            background-color: #e05d56; /* Darker shade on hover */
+            transform: translateY(-1px); /* Slight hover effect */
+        }
+
+        /* Footer Styles */
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.8rem; /* Reduced font size */
+            color: #fff;
+            text-shadow: 0 0 6px rgba(255, 105, 180, 1); /* Slightly smaller glow effect */
+            padding: 8px; /* Reduced padding */
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8); /* Background for footer */
+            box-sizing: border-box;
+        }
+
+        #footer p {
+            margin: 0;
+        }
+
+        .footer-link {
+            color: #ff6f61; /* GitHub link color */
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 6px rgba(255, 105, 180, 1); /* Slightly smaller glow effect for link */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #d5a6f4; /* Change color on hover */
+            text-shadow: 0 0 12px rgba(255, 105, 180, 1); /* Enhanced glow on hover */
+        }
+
+        /* Background Animation */
+        #background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f61, #d5a6f4); /* Gradient background */
+            background-size: 200% 200%;
+            animation: backgroundAnimation 10s ease infinite;
+            z-index: -1;
+            filter: blur(4px); /* Slightly reduced blur */
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #header nav {
+                flex-direction: column;
+                gap: 8px; /* Adjusted gap */
+            }
+
+            #header nav a {
+                padding: 8px;
+                font-size: 0.9rem; /* Adjusted font size */
+            }
+
+            .card {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div id="background-animation"></div>
+
+    <!-- Header -->
+    <div id="header">
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </div>
+
+    <!-- Services Container -->
+    <div id="container">
+        <div id="service-cards">
+            <!-- Frontend Developer Card -->
+            <div class="card">
+                <h2>Frontend Developer</h2>
+                <p>Experienced in creating beautiful, responsive websites using the latest technologies. Specializing in HTML, CSS, and JavaScript to build engaging user interfaces and seamless user experiences.</p>
+                <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript, React, Vue.js</p>
+                <a href="#">Learn More</a>
+            </div>
+
+            <!-- MERN Stack Developer Card -->
+            <div class="card">
+                <h2>MERN Stack Developer</h2>
+                <p>Proficient in the MERN stack, combining MongoDB, ExpressJS, ReactJS, and NodeJS to build powerful full-stack applications. Expert in developing scalable and high-performance web solutions.</p>
+                <p><strong>Tech Stack:</strong> MongoDB, ExpressJS, ReactJS, NodeJS</p>
+                <a href="#">Learn More</a>
+            </div>
+
+            <!-- MEAN Stack Developer Card -->
+            <div class="card">
+                <h2>MEAN Stack Developer</h2>
+                <p>Skilled in the MEAN stack for building dynamic web applications using MongoDB, ExpressJS, Angular, and NodeJS. Capable of creating efficient and robust applications with a strong focus on user experience.</p>
+                <p><strong>Tech Stack:</strong> MongoDB, ExpressJS, Angular, NodeJS</p>
+                <a href="#">Learn More</a>
+            </div>
+
+            <!-- WordPress Developer Card -->
+            <div class="card">
+                <h2>WordPress Developer</h2>
+                <p>Expert in developing custom WordPress themes and plugins. Ensures high-performance and secure WordPress sites tailored to specific client needs with a focus on functionality and aesthetics.</p>
+                <p><strong>Tech Stack:</strong> WordPress, PHP, JavaScript, HTML, CSS</p>
+                <a href="#">Learn More</a>
+            </div>
+
+            <!-- Backend Developer Card -->
+            <div class="card">
+                <h2>Backend Developer</h2>
+                <p>Specializes in server-side development to create scalable and efficient backend systems. Experience with various server technologies and databases to support frontend functionalities and data management.</p>
+                <p><strong>Tech Stack:</strong> NodeJS, ExpressJS, Python, Django, SQL</p>
+                <a href="#">Learn More</a>
+            </div>
+
+            <!-- Additional Service Card -->
+            <div class="card">
+                <h2>Other Services</h2>
+                <p>Offering a range of other technical services, including API development, database management, and cloud integration. Tailored solutions to meet diverse business requirements and technical challenges.</p>
+                <p><strong>Tech Stack:</strong> Various, depending on client needs</p>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Created by [Your Name] with <span style="color: #ff6f61;">❤️</span> | <a href="https://github.com/[your-github]" class="footer-link" target="_blank">GitHub</a></p>
+    </div>
+</body>
+</html>

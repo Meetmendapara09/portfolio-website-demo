@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Meet Mendapara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px; /* Space for fixed header */
+        }
+
+        /* Header Styles */
+        #header {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background for header */
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        #header nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        #header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 1rem;
+        }
+
+        #header nav a:hover,
+        #header nav a.active {
+            color: #fff;
+            background-color: #ff6f61; /* Highlight background color on hover and active state */
+        }
+
+        /* Profile Container Styles */
+        #container {
+            display: flex;
+            height: calc(100vh - 120px); /* Adjust height considering header and footer */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .sidebar div {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar div:hover {
+            background-color: #ff6f61; /* Highlight color on hover */
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        .main-content {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.7); /* Slightly transparent background for cards */
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            position: absolute;
+            top: 0;
+        }
+
+        .card.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card h2, .card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 20px;
+            color: #ff6f61; /* Accent color */
+        }
+
+        .card p, .card ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        /* Footer Styles */
+        #footer {
+            font-size: 1rem;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 1); /* Glow effect */
+            padding: 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8); /* Background for footer */
+        }
+
+        #footer p {
+            margin: 0;
+        }
+
+        .footer-link {
+            color: #ff6f61; /* GitHub link color */
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 1); /* Glow effect for link */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #d5a6f4; /* Change color on hover */
+            text-shadow: 0 0 16px rgba(255, 105, 180, 1); /* Enhanced glow on hover */
+        }
+
+        /* Background Animation */
+        #background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f61, #d5a6f4); /* Gradient background */
+            background-size: 200% 200%;
+            animation: backgroundAnimation 10s ease infinite;
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header">
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="profile.html" class="active">Profile</a>
+        </nav>
+    </div>
+
+    <!-- Profile Container -->
+    <div id="container">
+        <!-- Sidebar for Options -->
+        <div class="sidebar">
+            <div onclick="showCard('contact')">Contact Details</div>
+            <div onclick="showCard('education')">Education</div>
+            <div onclick="showCard('skills')">Technical Skills</div>
+            <div onclick="showCard('certifications')">Certifications</div>
+            <div onclick="showCard('volunteer')">Volunteer Experience</div>
+        </div>
+
+        <!-- Main Content Area for Active Card -->
+        <div class="main-content">
+            <!-- Contact Information Card -->
+            <div class="card" id="contact">
+                <h2>Contact Details</h2>
+                <p><strong>Meet Mendapara</strong><br>
+                +91 8200624659<br>
+                Ahmedabad, Gujarat – 382350<br>
+                <a href="mailto:meetmendapara09@gmail.com">meetmendapara09@gmail.com</a><br>
+                <a href="https://linkedin.com/in/meet-mendapara" target="_blank">LinkedIn</a> ⋄ 
+                <a href="https://github.com/Meetmendapara09" target="_blank">GitHub</a></p>
+            </div>
+
+            <!-- Education Card -->
+            <div class="card" id="education">
+                <h2>Education</h2>
+                <p><strong>Bachelor of Technology</strong><br>
+                Major in Computer Science and Engineering, Minor in Robotics and Automation 2022 - 2026<br>
+                Indus Institute of Technology and Engineering, Indus University<br>
+                CGPA: 8.38/10</p>
+                <p><strong>12th (Senior Secondary Examination)</strong> 2022<br>
+                Gujarat Secondary and Higher Secondary Education Board<br>
+                Percentage: 63%</p>
+                <p><strong>10th (Secondary Examination)</strong> 2020<br>
+                Gujarat Secondary and Higher Secondary Education Board<br>
+                Percentage: 83%</p>
+            </div>
+
+            <!-- Technical Skills Card -->
+            <div class="card" id="skills">
+                <h2>Technical Skills</h2>
+                <p><strong>Programming Languages:</strong> C, C++, Java, Python</p>
+                <p><strong>Data Structures and Algorithms:</strong> Proficient in C++ and JavaScript</p>
+                <p><strong>Web Development:</strong> Bootstrap, MySQL, HTML, CSS, JavaScript, TypeScript</p>
+                <p><strong>Technology Stack:</strong> MERN Stack (MongoDB, ExpressJS, ReactJS, NodeJS)</p>
+            </div>
+
+            <!-- Certifications Card -->
+            <div class="card" id="certifications">
+                <h2>Certifications</h2>
+                <ul>
+                    <li>FreeCodeCamp: Responsive Web Design</li>
+                    <li>FreeCodeCamp: JavaScript and Data Structures and Algorithms</li>
+                    <li>Meta: Introduction to Front-end Development</li>
+                    <li>Udemy: Front End Web Development Ultimate Guide</li>
+                </ul>
+            </div>
+
+            <!-- Volunteer Experience Card -->
+            <div class="card" id="volunteer">
+                <h2>Volunteer Experience</h2>
+                <p><strong>Rotaract Club of Indus University</strong> August 2023 - Present<br>
+                Actively contributing to community service initiatives.<br>
+                Fostering leadership skills through participation in club activities.</p>
+                <p><strong>Coordinator at Robotics Club, Indus University</strong> December 2023 - Present<br>
+                Spearheading various robotics projects and competitions to promote STEM education and innovation.</p>
+                <p><strong>Coordinator at Coding Club, Indus University</strong> January 2024 - Present<br>
+                Organizing coding workshops, hackathons, and coding competitions to enhance programming skills.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Created by [Your Name] with <span style="color: #ff6f61;">❤️</span> | <a href="https://github.com/[your-github]" class="footer-link" target="_blank">GitHub</a></p>
+    </div>
+
+    <!-- Background Animation -->
+    <div id="background-animation"></div>
+
+    <script>
+        function showCard(cardId) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById(cardId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

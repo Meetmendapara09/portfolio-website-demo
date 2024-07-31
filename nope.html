@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif; /* Updated font */
+            color: white;
+            text-align: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        #container {
+            font-size: 2rem; /* Reduced font size for a more balanced look */
+            font-weight: bold;
+            letter-spacing: 0.05em; /* Reduced letter spacing */
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center text horizontally */
+            text-align: center;
+            width: 100%;
+            gap: 1rem; /* Moderate gap between words */
+        }
+        .character {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 1); /* Pink glow effect */
+        }
+        .character.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .word {
+            display: inline-block;
+            margin-right: 0.5rem; /* Moderate spacing between words */
+        }
+        .highlight {
+            color: #ff6f61; /* Highlight color for specific words */
+            text-shadow: 0 0 10px rgba(255, 105, 180, 1); /* Glow effect */
+        }
+        #button-container {
+            position: absolute;
+            bottom: 50px; /* Adjusted to fit above footer */
+            text-align: center;
+            width: 100%;
+        }
+        .button {
+            display: inline-block;
+            position: relative;
+            margin: 5px;
+            width: 120px;
+            height: 40px;
+            cursor: pointer;
+            border: none;
+            overflow: hidden;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #ff6f61, #ffb347); /* Gradient background */
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .button i {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        .button:hover {
+            background: linear-gradient(135deg, #ffb347, #ff6f61); /* Inverted gradient on hover */
+        }
+        #background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f61, #d5a6f4); /* Gradient background */
+            background-size: 200% 200%;
+            animation: backgroundAnimation 10s ease infinite;
+            z-index: -1;
+            filter: blur(5px);
+        }
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        #footer {
+            position: absolute;
+            bottom: 20px; /* Position footer at the bottom */
+            width: 100%;
+            font-size: 1rem; /* Adjusted font size */
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 1); /* Glow effect */
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #footer p {
+            margin: 0;
+        }
+        .footer-link {
+            color: #ff6f61; /* GitHub link color */
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 1); /* Glow effect for link */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .footer-link:hover {
+            color: #d5a6f4; /* Change color on hover */
+            text-shadow: 0 0 16px rgba(255, 105, 180, 1); /* Enhanced glow on hover */
+        }
+        /* Loader Styles */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .loader-spinner {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #ff6f61; /* Pink */
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+    <div id="background-animation"></div>
+    <div id="container" class="glow">
+        <span class="word highlight">
+            <span class="character">H</span>
+            <span class="character">e</span>
+            <span class="character">l</span>
+            <span class="character">l</span>
+            <span class="character">o</span>
+        </span>
+        <span class="word">
+            <span class="character">A</span>
+            <span class="character">m</span>
+            <span class="character">a</span>
+            <span class="character">z</span>
+            <span class="character">i</span>
+            <span class="character">n</span>
+            <span class="character">g</span>
+        </span>
+        <span class="word highlight">
+            <span class="character">W</span>
+            <span class="character">o</span>
+            <span class="character">r</span>
+            <span class="character">l</span>
+            <span class="character">d</span>
+        </span>
+        <span class="word">
+            <span class="character">E</span>
+            <span class="character">n</span>
+            <span class="character">j</span>
+            <span class="character">o</span>
+            <span class="character">y</span>
+        </span>
+        <span class="word highlight">
+            <span class="character">F</span>
+            <span class="character">u</span>
+            <span class="character">n</span>
+        </span>
+    </div>
+    <div id="button-container">
+        <button id="btn-start" class="button" onclick="startAnimation()">
+            <i class="fas fa-play"></i> Start
+        </button>
+        <button id="btn-pause" class="button" onclick="pauseAnimation()">
+            <i class="fas fa-pause"></i> Pause
+        </button>
+        <button id="btn-resume" class="button" onclick="resumeAnimation()">
+            <i class="fas fa-play"></i> Resume
+        </button>
+        <button id="btn-reset" class="button" onclick="resetAnimation()">
+            <i class="fas fa-refresh"></i> Reset
+        </button>
+    </div>
+    <div id="footer">
+        <p>Created by Meet Mendapara with <span style="color: #ff6f61;">❤️</span> | <a href="https://github.com/meetmendapara09" class="footer-link" target="_blank">GitHub</a></p>
+    </div>
+    <audio id="typing-sound" src="Lights(chosic.com).mp3" preload="auto"></audio>
+
+    <script>
+        let timeoutIds = [];
+        let isPaused = false;
+        let animationStarted = false;
+        let userInteracted = false;
+        const typingSound = document.getElementById('typing-sound');
+
+        function playTypingSound() {
+            if (userInteracted) {
+                typingSound.currentTime = 0;
+                typingSound.play().catch(error => {
+                    console.error('Error playing sound:', error);
+                });
+            }
+        }
+
+        function handleUserInteraction() {
+            userInteracted = true;
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
+        }
+
+        document.addEventListener('click', handleUserInteraction);
+        document.addEventListener('keydown', handleUserInteraction);
+
+        function updateButtons() {
+            if (animationStarted) {
+                if (isPaused) {
+                    document.getElementById('btn-pause').style.display = 'none';
+                    document.getElementById('btn-resume').style.display = 'inline-block';
+                } else {
+                    document.getElementById('btn-resume').style.display = 'none';
+                    document.getElementById('btn-pause').style.display = 'inline-block';
+                }
+                document.getElementById('btn-start').style.display = 'none';
+                document.getElementById('btn-reset').style.display = 'inline-block';
+            } else {
+                document.getElementById('btn-start').style.display = 'inline-block';
+                document.getElementById('btn-reset').style.display = 'none';
+                document.getElementById('btn-pause').style.display = 'none';
+                document.getElementById('btn-resume').style.display = 'none';
+            }
+        }
+
+        function startAnimation() {
+            if (animationStarted) return;
+            animationStarted = true;
+            updateButtons();
+
+            const characters = document.querySelectorAll('.character');
+            characters.forEach((char, index) => {
+                timeoutIds.push(setTimeout(() => {
+                    if (!isPaused) {
+                        char.classList.add('show');
+                        playTypingSound();
+                    }
+                }, index * 100)); // 100ms delay between each character
+            });
+        }
+
+        function pauseAnimation() {
+            isPaused = true;
+            updateButtons();
+            document.querySelectorAll('.character').forEach(char => {
+                char.classList.remove('show');
+            });
+        }
+
+        function resumeAnimation() {
+            if (!isPaused) return;
+            isPaused = false;
+            updateButtons();
+
+            const characters = document.querySelectorAll('.character');
+            characters.forEach((char, index) => {
+                setTimeout(() => {
+                    if (!isPaused) {
+                        char.classList.add('show');
+                        playTypingSound();
+                    }
+                }, index * 100); // Resume with same delay
+            });
+        }
+
+        function resetAnimation() {
+            isPaused = false;
+            animationStarted = false;
+            updateButtons();
+
+            // Clear any existing timeouts
+            timeoutIds.forEach(id => clearTimeout(id));
+            timeoutIds = [];
+
+            // Hide all characters and restart the animation
+            document.querySelectorAll('.character').forEach(char => {
+                char.classList.remove('show');
+            });
+
+            // Restart the animation
+            startAnimation();
+        }
+
+        // Hide loader and start the animation on page load
+        window.addEventListener('load', () => {
+            document.getElementById('loader').style.display = 'none';
+            startAnimation();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            position: relative;
+            text-align: center;
+        }
+        #container {
+            font-size: 3rem; /* Increased font size for better visibility */
+            font-weight: bold;
+            letter-spacing: 0.1em; /* Adjusted letter spacing for a balanced look */
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center text horizontally */
+            text-align: center;
+            width: 100%;
+            gap: 1.5rem; /* Added gap between words */
+        }
+        .character {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 1); /* Pink glow effect */
+        }
+        .character.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .word {
+            display: inline-block;
+            font-size: 3rem; /* Increased font size for effect */
+            margin-right: 1rem; /* Increased spacing between words */
+        }
+        .highlight {
+            color: #ff6f61; /* Highlight color for specific words */
+            text-shadow: 0 0 15px rgba(255, 105, 180, 1); /* Enhanced glow effect */
+        }
+        #button-container {
+            position: absolute;
+            bottom: 100px; /* Adjusted to fit above footer */
+            text-align: center;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .glow {
+            text-shadow: 0 0 20px rgba(255, 105, 180, 1), 0 0 30px rgba(255, 105, 180, 1), 0 0 40px rgba(255, 105, 180, 1);
+        }
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        #background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f61, #d5a6f4, #ff6f61); /* Vibrant gradient background */
+            background-size: 400% 400%;
+            animation: backgroundAnimation 10s ease infinite;
+            z-index: -1;
+            filter: blur(5px);
+        }
+        #footer {
+            position: absolute;
+            bottom: 20px; /* Position footer at the bottom */
+            width: 100%;
+            font-size: 1.2rem; /* Slightly larger font size */
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 1), 0 0 20px rgba(255, 105, 180, 1); /* Glow effect */
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #footer p {
+            margin: 0;
+            animation: pulse 1.5s infinite; /* Pulse animation for the footer text */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .footer-link {
+            color: #ff6f61; /* GitHub link color */
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 1); /* Glow effect for link */
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .footer-link:hover {
+            color: #d5a6f4; /* Change color on hover */
+            text-shadow: 0 0 20px rgba(255, 105, 180, 1), 0 0 30px rgba(255, 105, 180, 1); /* Enhanced glow on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="background-animation"></div>
+    <div id="container" class="glow">
+        <span class="word highlight">
+            <span class="character">H</span>
+            <span class="character">e</span>
+            <span class="character">l</span>
+            <span class="character">l</span>
+            <span class="character">o</span>
+        </span>
+        <span class="word">
+            <span class="character">A</span>
+            <span class="character">m</span>
+            <span class="character">a</span>
+            <span class="character">z</span>
+            <span class="character">i</span>
+            <span class="character">n</span>
+            <span class="character">g</span>
+        </span>
+        <span class="word highlight">
+            <span class="character">W</span>
+            <span class="character">o</span>
+            <span class="character">r</span>
+            <span class="character">l</span>
+            <span class="character">d</span>
+        </span>
+        <span class="word">
+            <span class="character">E</span>
+            <span class="character">n</span>
+            <span class="character">j</span>
+            <span class="character">o</span>
+            <span class="character">y</span>
+        </span>
+        <span class="word highlight">
+            <span class="character">F</span>
+            <span class="character">u</span>
+            <span class="character">n</span>
+        </span>
+    </div>
+    <div id="button-container">
+        <button onclick="startAnimation()">Start Animation</button>
+        <button onclick="pauseAnimation()">Pause Animation</button>
+        <button onclick="resumeAnimation()">Resume Animation</button>
+        <button onclick="resetAnimation()">Reset Animation</button>
+    </div>
+    <div id="footer">
+        <p>Created by Meet Mendapara with <span style="color: #ff6f61;">❤️</span> | <a href="https://github.com/meetmendapara09" class="footer-link" target="_blank">GitHub</a></p>
+    </div>
+    <audio id="typing-sound" src="Lights(chosic.com).mp3" preload="auto"></audio>
+
+    <script>
+        let timeoutIds = [];
+        let isPaused = false;
+        let animationStarted = false;
+        let userInteracted = false;
+        const typingSound = document.getElementById('typing-sound');
+
+        function playTypingSound() {
+            if (userInteracted) {
+                typingSound.currentTime = 0;
+                typingSound.play().catch(error => {
+                    console.error('Error playing sound:', error);
+                });
+            }
+        }
+
+        function handleUserInteraction() {
+            userInteracted = true;
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
+        }
+
+        document.addEventListener('click', handleUserInteraction);
+        document.addEventListener('keydown', handleUserInteraction);
+
+        function startAnimation() {
+            if (animationStarted) return;
+            animationStarted = true;
+
+            const characters = document.querySelectorAll('.character');
+            characters.forEach((char, index) => {
+                timeoutIds.push(setTimeout(() => {
+                    if (!isPaused) {
+                        char.classList.add('show');
+                        playTypingSound();
+                    }
+                }, index * 100)); // 100ms delay between each character
+            });
+        }
+
+        function pauseAnimation() {
+            isPaused = true;
+            document.querySelectorAll('.character').forEach(char => {
+                char.classList.remove('show');
+            });
+        }
+
+        function resumeAnimation() {
+            if (!isPaused) return;
+            isPaused = false;
+
+            const characters = document.querySelectorAll('.character');
+            characters.forEach((char, index) => {
+                setTimeout(() => {
+                    if (!isPaused) {
+                        char.classList.add('show');
+                        playTypingSound();
+                    }
+                }, index * 100); // Resume with same delay
+            });
+        }
+
+        function resetAnimation() {
+            isPaused = false;
+            animationStarted = false;
+
+            // Clear any existing timeouts
+            timeoutIds.forEach(id => clearTimeout(id));
+            timeoutIds = [];
+
+            // Hide all characters and restart the animation
+            document.querySelectorAll('.character').forEach(char => {
+                char.classList.remove('show');
+            });
+
+            // Restart the animation
+            startAnimation();
+        }
+
+        // Start the animation on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            startAnimation();
+        });
+    </script>
+</body>
+</html>
